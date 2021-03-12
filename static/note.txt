@@ -1,0 +1,4 @@
+type == .\env\Scripts\activate.ps1
+To activate ^
+press crtl+shift+R
+for clearing cache
