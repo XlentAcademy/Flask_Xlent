@@ -4,11 +4,11 @@
     <form action="/work" method="POST">
         <div class="mb-3">
             <label for="title" class="form-label">Todo title</label>
-            <input placeholder="Todo title." type="text" autocomplete="off" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+            <input placeholder="Todo title." type="text" autocomplete="off" class="form-control" name="title" id="title" aria-describedby="emailHelp" required>
         </div>
         <div class="mb-3">
             <label for="desc" class="form-label">Todo Description</label>
-            <input placeholder="Write your Todo." type="text" autocomplete="off" class="form-control" name="desc" id="desc">
+            <input placeholder="Write your Todo." type="text" autocomplete="off" class="form-control" name="desc" id="desc" required>
         </div>
         <button type="submit" class="btn btn-outline-primary">Add Todo</button>
     </form>
