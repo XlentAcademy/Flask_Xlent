@@ -22,12 +22,29 @@ def hello_world():
         title = request.form['title']
         desc = request.form['desc']
 
-        todo = Todo(title=title, desc=desc)
+        todo = Todo(title=str(title).lower(), desc=desc)
         db.session.add(todo)
         db.session.commit()
 
     allTodo = Todo.query.all()
     return render_template('index.html', allTodo=allTodo)
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        query = request.form['query']
+        todo = Todo.query.filter_by(title=str(query).lower()).all()
+        for todos in todo:
+            todos = str(todos).replace("-", "")
+            todos = str(todos).split()
+            print(todos)
+
+        # for todos in todo:
+        #     print(todos)
+        print("Query: ", str(query))
+    return render_template('home.html', query=query)
+
+
 
 @app.route('/')
 def home():
@@ -49,7 +66,7 @@ def update(sno):
         title = request.form['title']
         desc = request.form['desc']
         todo = Todo.query.filter_by(sno=sno).first()
-        todo.title = title
+        todo.title = str(title).lower()
         todo.desc = desc
         db.session.add(todo)
         db.session.commit()
@@ -65,5 +82,6 @@ def delete(sno):
     db.session.commit()
     return redirect("/work")
 
+
 if __name__ == "__main__":
-    app.run(debug=True, port=8000)
+    app.run(debug=True, port=7000)
